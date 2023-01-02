@@ -1,0 +1,61 @@
+syntax = "proto3";
+package contactPb.v1;
+import "google/protobuf/empty.proto";
+import "api/qvbilam/user/v1/user.proto";
+option go_package="contact/api/qvbilam/contact/v1;contactV1";
+
+message FriendResponse {
+  int64 id = 1;
+  int64 userId = 2;
+  string remark = 3;
+  userPb.v1.UserResponse friend = 4;
+}
+
+message FriendsResponse {
+  int64 total = 1;
+  repeated FriendResponse friends = 2;
+}
+
+message UpdateFriendRequest {
+  int64 id = 1;
+  int64 userId = 2;
+  int64 friendUserId = 3;
+  string remark = 4;
+}
+
+message SearchFriendRequest{
+  int64 userId = 1;
+}
+
+message UpdateFriendApplyRequest {
+  int64 id = 1;
+  int64 userId = 2;
+  int64 applyUserId = 3;
+  string content = 4;
+  int64 status = 5;
+}
+
+message FriendApplyResponse {
+  int64 id = 1;
+  int64 userId = 2;
+  int64 applyUserId = 3;
+  string content = 4;
+  int64 status = 5;
+  userPb.v1.UserResponse user = 6;
+}
+
+message FriendAppliesResponse {
+  int64 total = 1;
+  repeated FriendApplyResponse users = 2;
+}
+
+service friend {
+  rpc Get(SearchFriendRequest) returns (FriendsResponse);
+  rpc Update(UpdateFriendRequest) returns (google.protobuf.Empty);
+  rpc Delete(UpdateFriendRequest) returns (google.protobuf.Empty);
+
+  rpc GetApply(UpdateFriendApplyRequest) returns (FriendAppliesResponse);
+  rpc Apply(UpdateFriendApplyRequest) returns (google.protobuf.Empty);
+  rpc ApplyAgree(UpdateFriendApplyRequest) returns (google.protobuf.Empty);
+  rpc ApplyReject(UpdateFriendApplyRequest) returns (google.protobuf.Empty);
+}

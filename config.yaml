@@ -1,0 +1,15 @@
+name: "contact"
+host: "0.0.0.0"
+port: 9705
+user-server:
+  host: "127.0.0.1"
+  port: 9801
+  name: "grpc-user-server"
+message-server:
+  host: "127.0.0.1"
+  port: 9804
+  name: "grpc-message-server"
+contact-server:
+  host: "127.0.0.1"
+  port: 9805
+  name: "grpc-contact-server"
