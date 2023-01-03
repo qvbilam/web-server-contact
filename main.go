@@ -23,9 +23,6 @@ func main() {
 	}
 	// 初始化grpc客户端
 	initialize.InitServer()
-	fmt.Println("====================")
-	fmt.Printf("config: %+v\n", global.ServerConfig)
-	fmt.Println("====================")
 
 	Name := global.ServerConfig.Name
 	Host := "0.0.0.0"

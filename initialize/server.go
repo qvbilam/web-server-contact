@@ -40,6 +40,7 @@ func InitServer() {
 		},
 	}
 
+	s.initContactServer()
 	s.initMessageServer()
 	s.initUserServer()
 }
@@ -66,8 +67,9 @@ func (s *serverClientConfig) initContactServer() {
 	}
 
 	friendClient := proto.NewFriendClient(conn)
-	groupClient := proto.NewGroupClient(conn)
 	global.ContactFriendServerClient = friendClient
+
+	groupClient := proto.NewGroupClient(conn)
 	global.ContactGroupServerClient = groupClient
 }
 
