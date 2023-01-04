@@ -20,6 +20,8 @@ func InitContactRouter(Router *gin.RouterGroup) {
 		ContactRouter.DELETE("friend/apply/:id", friend.Reject) // 拒绝申请
 
 		ContactRouter.POST("group", group.Create)            // 创建群
+		ContactRouter.GET("group", group.Search)             // 搜索群
+		ContactRouter.GET("group/mine", group.Mine)          // 我的群
 		ContactRouter.GET("group/:id/member", group.Members) // 群成员
 		ContactRouter.POST("group/:id/member", group.Join)   // 加入群
 		ContactRouter.DELETE("group/:id/member", group.Quit) // 退出群

@@ -36,6 +36,26 @@ func Create(ctx *gin.Context) {
 	api.SuccessNotContent(ctx)
 }
 
+func Search(ctx *gin.Context) {
+	// todo
+	api.SuccessNotContent(ctx)
+}
+
+func Mine(ctx *gin.Context) {
+	uID, _ := ctx.Get("userId")
+	userID := uID.(int64)
+
+	groups, err := global.ContactGroupServerClient.Mine(context.Background(), &proto.SearchGroupRequest{
+		UserId: userID,
+	})
+	if err != nil {
+		api.HandleGrpcErrorToHttp(ctx, err)
+		return
+	}
+
+	api.SuccessNotMessage(ctx, groups)
+}
+
 func Members(ctx *gin.Context) {
 	//uID, _ := ctx.Get("userId")
 	//userID := uID.(int64)
@@ -43,7 +63,7 @@ func Members(ctx *gin.Context) {
 	paramId := ctx.Param("id")
 	id, _ := strconv.Atoi(paramId)
 
-	members, err := global.ContactGroupServerClient.Member(context.Background(), &proto.SearchGroupMemberRequest{
+	members, err := global.ContactGroupServerClient.Members(context.Background(), &proto.SearchGroupMemberRequest{
 		GroupId: int64(id),
 	})
 
