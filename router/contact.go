@@ -1,6 +1,7 @@
 package router
 
 import (
+	"contact/api/conversation"
 	"contact/api/friend"
 	"contact/api/group"
 	"contact/middleware"
@@ -25,5 +26,9 @@ func InitContactRouter(Router *gin.RouterGroup) {
 		ContactRouter.GET("group/:id/member", group.Members) // 群成员
 		ContactRouter.POST("group/:id/member", group.Join)   // 加入群
 		ContactRouter.DELETE("group/:id/member", group.Quit) // 退出群
+
+		ContactRouter.GET("conversation", conversation.Get)           // 获取最近联系人
+		ContactRouter.POST("conversation", conversation.Create)       // 创建联系人
+		ContactRouter.DELETE("conversation/:id", conversation.Delete) // 删除联系人
 	}
 }

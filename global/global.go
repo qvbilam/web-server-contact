@@ -9,10 +9,11 @@ import (
 )
 
 var (
-	Trans                     ut.Translator // 表单验证
-	ServerConfig              *config.ServerConfig
-	ContactFriendServerClient proto.FriendClient
-	ContactGroupServerClient  proto.GroupClient
-	UserServerClient          userProto.UserClient
-	MessageServerClient       messageProto.MessageClient
+	Trans                           ut.Translator // 表单验证
+	ServerConfig                    *config.ServerConfig
+	ContactFriendServerClient       proto.FriendClient
+	ContactGroupServerClient        proto.GroupClient
+	ContactConversationServerClient proto.ConversationClient
+	UserServerClient                userProto.UserClient
+	MessageServerClient             messageProto.MessageClient
 )
