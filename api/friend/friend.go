@@ -4,6 +4,7 @@ import (
 	"contact/api"
 	proto "contact/api/qvbilam/contact/v1"
 	"contact/global"
+	"contact/resource"
 	"contact/validate"
 	"context"
 	"github.com/gin-gonic/gin"
@@ -80,7 +81,9 @@ func News(ctx *gin.Context) {
 		api.HandleGrpcErrorToHttp(ctx, err)
 		return
 	}
-	api.SuccessNotMessage(ctx, users)
+
+	res := resource.NewsResource{}
+	api.SuccessNotMessage(ctx, res.Resource(users))
 }
 
 func Friends(ctx *gin.Context) {
@@ -93,7 +96,8 @@ func Friends(ctx *gin.Context) {
 		return
 	}
 
-	api.SuccessNotMessage(ctx, users)
+	res := resource.FriendsResource{}
+	api.SuccessNotMessage(ctx, res.Resource(users))
 }
 
 func Update(ctx *gin.Context) {

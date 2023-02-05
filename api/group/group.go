@@ -4,6 +4,7 @@ import (
 	"contact/api"
 	proto "contact/api/qvbilam/contact/v1"
 	"contact/global"
+	"contact/resource"
 	"contact/validate"
 	"context"
 	"github.com/gin-gonic/gin"
@@ -53,7 +54,9 @@ func Mine(ctx *gin.Context) {
 		return
 	}
 
-	api.SuccessNotMessage(ctx, groups)
+	res := resource.GroupsResource{}
+
+	api.SuccessNotMessage(ctx, res.Resource(groups))
 }
 
 func Members(ctx *gin.Context) {
@@ -71,8 +74,8 @@ func Members(ctx *gin.Context) {
 		api.HandleGrpcErrorToHttp(ctx, err)
 		return
 	}
-
-	api.SuccessNotMessage(ctx, members)
+	res := resource.GroupMembersResource{}
+	api.SuccessNotMessage(ctx, res.Resource(members))
 }
 
 func Join(ctx *gin.Context) {
