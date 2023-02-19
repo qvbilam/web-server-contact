@@ -16,7 +16,7 @@ func Auth() gin.HandlerFunc {
 		})
 
 		if err != nil {
-			api.HandleValidateError(ctx, err)
+			api.HandleGrpcErrorToHttp(ctx, err)
 			ctx.Abort()
 			return
 		}

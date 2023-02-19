@@ -18,6 +18,7 @@ require (
 )
 
 require (
+	github.com/druidcaesa/ztool v0.0.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
