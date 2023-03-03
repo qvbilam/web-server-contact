@@ -11,6 +11,9 @@ type UserResource struct {
 }
 
 func (r *UserResource) Resource(p *userProto.UserResponse) *UserResource {
+	if p == nil {
+		return nil
+	}
 	return &UserResource{
 		ID:       p.Id,
 		Code:     p.Code,
