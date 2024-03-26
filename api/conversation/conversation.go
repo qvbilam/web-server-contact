@@ -68,3 +68,18 @@ func Delete(ctx *gin.Context) {
 
 	api.SuccessNotContent(ctx)
 }
+
+func Read(ctx *gin.Context) {
+	uID, _ := ctx.Get("userId")
+	userID := uID.(int64)
+
+	paramId := ctx.Param("id")
+	id, _ := strconv.Atoi(paramId)
+
+	_, _ = global.ContactConversationServerClient.Read(context.Background(), &proto.UpdateConversationRequest{
+		Id:     int64(id),
+		UserId: userID,
+	})
+	//_, - = global.MessageServerClient.
+
+}
