@@ -14,15 +14,15 @@ import (
 
 func InitConfig() {
 	initEnvConfig()
-	initFlagConfig()
+	//initFlagConfig()
 	initViperConfig()
 }
 
 func initEnvConfig() {
 	serverPort, _ := strconv.Atoi(os.Getenv("PORT"))
-	contactServerPort, _ := strconv.Atoi(os.Getenv("CONTACT-SERVER_PORT"))
-	userServerPort, _ := strconv.Atoi(os.Getenv("USER-SERVER_PORT"))
-	messageServerPort, _ := strconv.Atoi(os.Getenv("MESSAGE-SERVER_PORT"))
+	contactServerPort, _ := strconv.Atoi(os.Getenv("CONTACT_SERVER_PORT"))
+	userServerPort, _ := strconv.Atoi(os.Getenv("USER_SERVER_PORT"))
+	messageServerPort, _ := strconv.Atoi(os.Getenv("MESSAGE_SERVER_PORT"))
 
 	if global.ServerConfig == nil {
 		global.ServerConfig = &config.ServerConfig{}
@@ -32,16 +32,16 @@ func initEnvConfig() {
 	global.ServerConfig.Host = "0.0.0.0"
 	global.ServerConfig.Port = int64(serverPort)
 
-	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT-SERVER_HOST")
-	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT-SERVER_NAME")
+	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT_SERVER_HOST")
+	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT_SERVER_NAME")
 	global.ServerConfig.ContactServerConfig.Port = int64(contactServerPort)
 
-	global.ServerConfig.UserServerConfig.Name = os.Getenv("USER-SERVER_HOST")
-	global.ServerConfig.UserServerConfig.Host = os.Getenv("USER-SERVER_NAME")
+	global.ServerConfig.UserServerConfig.Name = os.Getenv("USER_SERVER_HOST")
+	global.ServerConfig.UserServerConfig.Host = os.Getenv("USER_SERVER_NAME")
 	global.ServerConfig.UserServerConfig.Port = int64(userServerPort)
 
-	global.ServerConfig.MessageServerConfig.Name = os.Getenv("MESSAGE-SERVER_HOST")
-	global.ServerConfig.MessageServerConfig.Host = os.Getenv("MESSAGE-SERVER_NAME")
+	global.ServerConfig.MessageServerConfig.Name = os.Getenv("MESSAGE_SERVER_HOST")
+	global.ServerConfig.MessageServerConfig.Host = os.Getenv("MESSAGE_SERVER_NAME")
 	global.ServerConfig.MessageServerConfig.Port = int64(messageServerPort)
 }
 

@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-web
+  labels:
+    app: contact-web
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: contact-web
+  template:
+    metadata:
+      labels:
+        app: contact-web
+        version: v1.0
+    spec:
+      containers:
+        - name: user-web
+          image: registry.cn-hangzhou.aliyuncs.com/qvbilam/web-server-contact:1.0.0
+          imagePullPolicy: Always
+          ports: # 容器内部使用端口
+            - containerPort: 9501
+          env:
+            # 服务配置
+            - name: SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: server_name
+                  name: contact-web
+
+            # user-server 配置
+            - name: USER_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: user_server_host
+                  name: contact-web
+            - name: USER_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: user_server_port
+                  name: contact-web
+            - name: USER_SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: user_server_name
+                  name: contact-web
+            # message-server 配置
+            - name: MESSAGE_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: message_server_host
+                  name: contact-web
+            - name: MESSAGE_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: message_server_port
+                  name: contact-web
+            - name: MESSAGE_SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: message_server_name
+                  name: contact-web
+            # contact-server 配置
+            - name: CONTACT_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: contact_server_host
+                  name: contact-web
+            - name: CONTACT_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: contact_server_port
+                  name: contact-web
+            - name: CONTACT_SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: contact_server_name
+                  name: contact-web
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+      imagePullSecrets:
+        - name: ali-image-key

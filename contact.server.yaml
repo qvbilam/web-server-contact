@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: contact-web-server
+spec:
+  selector:
+    app: contact-web
+  ports:
+    - name: http-server-contact
+      protocol: TCP
+      port: 9705
+      targetPort: 9501
+  type: NodePort

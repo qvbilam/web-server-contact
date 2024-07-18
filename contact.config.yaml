@@ -1,0 +1,22 @@
+apiVersion: "v1"
+kind: ConfigMap
+metadata:
+  name: contact-web
+  labels:
+    app: contact-web
+data:
+  # 服务配置
+  server_name: "contact-web"
+  server_host: "0.0.0.0"
+  # user-server
+  user_server_name: "user-server"
+  user_server_host: "user-server"
+  user_server_port: "9801"
+  # message-server
+  message_server_name: "message-server"
+  message_server_host: "message-server"
+  message_server_port: "9804"
+  # contact-server
+  contact_server_name: "contact-server"
+  contact_server_host: "contact-server"
+  contact_server_port: "9805"
