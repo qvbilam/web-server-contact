@@ -32,7 +32,7 @@ func initEnvConfig() {
 	global.ServerConfig.Host = "0.0.0.0"
 	global.ServerConfig.Port = int64(serverPort)
 
-	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT_SERVER_HOST")
+	global.ServerConfig.ContactServerConfig.Host = os.Getenv("CONTACT_SERVER_HOST")
 	global.ServerConfig.ContactServerConfig.Name = os.Getenv("CONTACT_SERVER_NAME")
 	global.ServerConfig.ContactServerConfig.Port = int64(contactServerPort)
 
